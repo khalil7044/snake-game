@@ -200,17 +200,20 @@
 
     <!-- Farcaster Mini App SDK -->
     <script type="module">
-        import { sdk } from 'https://esm.sh/@farcaster/miniapp-sdk';
+        console.log('Script module loading...');
         
-        // Wait for page to be fully loaded
-        window.addEventListener('load', async () => {
-            try {
-                await sdk.actions.ready();
-                console.log('Farcaster SDK ready called successfully');
-            } catch (error) {
-                console.error('Error calling SDK ready:', error);
-            }
-        });
+        try {
+            const { sdk } = await import('https://esm.sh/@farcaster/miniapp-sdk');
+            console.log('SDK imported:', sdk);
+            console.log('SDK actions:', sdk.actions);
+            console.log('SDK ready function:', sdk.actions.ready);
+            
+            // Call ready immediately
+            await sdk.actions.ready();
+            console.log('SDK ready() called successfully!');
+        } catch (error) {
+            console.error('SDK Error:', error);
+        }
     </script>
         
         const canvas = document.getElementById('gameCanvas');
