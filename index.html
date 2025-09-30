@@ -229,7 +229,7 @@
         
         highScoreEl.textContent = highScore;
         
-        function startGame() {
+        window.startGame = function() {
             snake = [{x: 10, y: 10}];
             dx = 1;
             dy = 0;
@@ -246,12 +246,12 @@
             gameLoop = setInterval(update, 100);
         }
         
-        function togglePause() {
+        window.togglePause = function() {
             if (!gameRunning) return;
             gamePaused = !gamePaused;
         }
         
-        function changeDirection(newDx, newDy) {
+        window.changeDirection = function(newDx, newDy) {
             if (!gameRunning || gamePaused) return;
             if (dx === -newDx && dy === -newDy) return;
             if (dx === 0 && newDx !== 0) {
