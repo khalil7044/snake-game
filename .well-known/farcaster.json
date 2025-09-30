@@ -1,0 +1,15 @@
+{
+     "accountAssociation": {
+       "header": "",
+       "payload": "",
+       "signature": ""
+     },
+     "frame": {
+       "name": "Snake Game",
+       "version": "1.0.0",
+       "iconUrl": "https://khalil7044.github.io/snake-game/icon.png",
+       "homeUrl": "https://khalil7044.github.io/snake-game/",
+       "splashImageUrl": "https://khalil7044.github.io/snake-game/icon.png",
+       "splashBackgroundColor": "#667eea"
+     }
+   }
