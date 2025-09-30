@@ -203,9 +203,14 @@
     
     <script>
         // Initialize Farcaster Mini App SDK
-        if (typeof window.frame !== 'undefined') {
-            window.frame.sdk.actions.ready();
-        }
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (typeof window.frame !== 'undefined' && window.frame.sdk) {
+                    window.frame.sdk.actions.ready();
+                    console.log('Farcaster SDK ready called');
+                }
+            }, 100);
+        });
         
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
