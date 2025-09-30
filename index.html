@@ -199,38 +199,18 @@
     </div>
 
     <!-- Farcaster Mini App SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@farcaster/miniapp-sdk/dist/index.min.js"></script>
-    
-    <script>
-        // Initialize Farcaster Mini App SDK with retry logic
-        function initFarcasterSDK() {
-            let attempts = 0;
-            const maxAttempts = 20;
-            
-            const checkSDK = setInterval(function() {
-                attempts++;
-                
-                if (typeof window.frame !== 'undefined' && 
-                    window.frame.sdk && 
-                    window.frame.sdk.actions && 
-                    typeof window.frame.sdk.actions.ready === 'function') {
-                    
-                    clearInterval(checkSDK);
-                    window.frame.sdk.actions.ready();
-                    console.log('Farcaster SDK ready called successfully');
-                    
-                } else if (attempts >= maxAttempts) {
-                    clearInterval(checkSDK);
-                    console.log('Farcaster SDK not found after ' + maxAttempts + ' attempts');
-                }
-            }, 100);
-        }
+    <script type="module">
+        import { sdk } from 'https://esm.sh/@farcaster/miniapp-sdk';
         
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initFarcasterSDK);
-        } else {
-            initFarcasterSDK();
-        }
+        // Wait for page to be fully loaded
+        window.addEventListener('load', async () => {
+            try {
+                await sdk.actions.ready();
+                console.log('Farcaster SDK ready called successfully');
+            } catch (error) {
+                console.error('Error calling SDK ready:', error);
+            }
+        });
     </script>
         
         const canvas = document.getElementById('gameCanvas');
