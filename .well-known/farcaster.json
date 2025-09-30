@@ -1,15 +1,19 @@
 {
-     "accountAssociation": {
-       "header": "eyJmaWQiOjE1NDc4LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4OTI5RjM3YzBDYjZCN0VmYjYyMTdmYzQ2MTk0NGE0OWZjY0NlOEU2OSJ9",
-       "payload": "eyJkb21haW4iOiJraGFsaWw3MDQ0LmdpdGh1Yi5pbyJ9",
-       "signature": "3DIWOQezDk5nr4kA0VBtLwe15VNUoFXAbu7bbslQRBl0f7ElFZRK1dpGNRuyPxBB8Y0GIO1AwpB41LhloTfWkRw="
-     },
-     "frame": {
-       "name": "Snake Game",
-       "version": "1.0.0",
-       "iconUrl": "https://khalil7044.github.io/snake-game/icon.png",
-       "homeUrl": "https://khalil7044.github.io/snake-game/",
-       "splashImageUrl": "https://khalil7044.github.io/snake-game/icon.png",
-       "splashBackgroundColor": "#667eea"
-     }
-   }
+  "frame": {
+    "name": "Snake Game",
+    "homeUrl": "https://khalil7044.github.io/snake-game/",
+    "iconUrl": "https://khalil7044.github.io/snake-game/icon.png",
+    "version": "1.0.0",
+    "imageUrl": "https://khalil7044.github.io/snake-game/preview.png",
+    "subtitle": "Play the classic snake game",
+    "description": "Classic Snake Game - Eat, grow, and don't hit yourself! Challenge your friends and beat the high score.",
+    "splashImageUrl": "https://khalil7044.github.io/snake-game/icon.png",
+    "primaryCategory": "games",
+    "splashBackgroundColor": "#667eea"
+  },
+  "accountAssociation": {
+    "header": "eyJmaWQiOjE1NDc4LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4OTI5RjM3YzBDYjZCN0VmYjYyMTdmYzQ2MTk0NGE0OWZjY0NlOEU2OSJ9",
+    "payload": "eyJkb21haW4iOiJraGFsaWw3MDQ0LmdpdGh1Yi5pbyJ9",
+    "signature": "3DIWOQezDk5nr4kA0VBtLwe15VNUoFXAbu7bbslQRBl0f7ElFZRK1dpGNRuyPxBB8Y0GIO1AwpB41LhloTfWkRw="
+  }
+}
