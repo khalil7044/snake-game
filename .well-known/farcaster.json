@@ -1,9 +1,4 @@
 {
-  "accountAssociation": {
-    "header": "eyJmaWQiOjE1NDc4LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4OTI5RjM3YzBDYjZCN0VmYjYyMTdmYzQ2MTk0NGE0OWZjY0NlOEU2OSJ9",
-    "payload": "eyJkb21haW4iOiJraGFsaWw3MDQ0LmdpdGh1Yi5pbyJ9",
-    "signature": "3DIWOQezDk5nr4kA0VBtLwe15VNUoFXAbu7bbslQRBl0f7ElFZRK1dpGNRuyPxBB8Y0GIO1AwpB41LhloTfWkRw="
-  },
   "miniapp": {
     "version": "1",
     "name": "Snake Game",
