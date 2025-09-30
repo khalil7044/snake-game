@@ -3,24 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Snake Game</title>
-
-    <!-- Farcaster Miniapp Meta -->
-    <meta property="fc:frame" content='{
-      "version": "next",
-      "imageUrl": "https://picsum.photos/600/300",
-      "button": {
-        "title": "Play Snake",
-        "action": {
-          "type": "launch_frame",
-          "name": "Snake Game",
-          "url": "https://khalil7044.github.io/snake-game/",
-          "splashImageUrl": "https://picsum.photos/400/200",
-          "splashBackgroundColor": "#121212"
-        }
-      }
-    }' />
-
+    <title>Snake Game - Farcaster Mini App</title>
+    
+    <!-- Farcaster Mini App Metadata -->
+    <meta property="fc:frame" content='{"version":"next","imageUrl":"https://khalil7044.github.io/snake-game/preview.png","button":{"title":"Play Snake Game","action":{"type":"launch_frame","name":"Snake Game","url":"https://khalil7044.github.io/snake-game/","splashImageUrl":"https://khalil7044.github.io/snake-game/icon.png","splashBackgroundColor":"#667eea"}}}' />
+    
     <style>
         * {
             margin: 0;
@@ -211,7 +198,15 @@
         <button onclick="startGame()">Play Again</button>
     </div>
 
+    <!-- Farcaster Mini App SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@farcaster/miniapp-sdk/dist/index.min.js"></script>
+    
     <script>
+        // Initialize Farcaster Mini App SDK
+        if (typeof window.frame !== 'undefined') {
+            window.frame.sdk.actions.ready();
+        }
+        
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const scoreEl = document.getElementById('score');
@@ -417,11 +412,6 @@
         });
         
         draw();
-
-        // notify Farcaster that the app is ready
-        if (window.fc && fc.actions && fc.actions.ready) {
-            fc.actions.ready();
-        }
     </script>
 </body>
 </html>
