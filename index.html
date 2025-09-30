@@ -417,6 +417,11 @@
         });
         
         draw();
+
+        // notify Farcaster that the app is ready
+        if (window.fc && fc.actions && fc.actions.ready) {
+            fc.actions.ready();
+        }
     </script>
 </body>
 </html>
