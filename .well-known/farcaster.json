@@ -1,5 +1,5 @@
 {
-  "frame": {
+  "miniapp": {
     "name": "snake-game",
     "version": "1",
     "iconUrl": "https://khalil7044.github.io/snake-game/icon.png",
