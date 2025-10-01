@@ -12,7 +12,7 @@
   },
   "accountAssociation": {
     "header": "eyJmaWQiOjE1NDc4LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4OTI5RjM3YzBDYjZCN0VmYjYyMTdmYzQ2MTk0NGE0OWZjY0NlOEU2OSJ9",
-    "payload": "eyJkb21haW4iOiJnaXRodWIuY29tIn0",
-    "signature": "dGFFse5bwZxgBZD8PpKHWiu3zpGpFeEZMc2BQh4YyU1FP49cyS3AIuZWHmwBXK5Ys75o7pi8PD/SI1OSx5WBXBs="
+    "payload": "eyJkb21haW4iOiJzbmFrZS1nYW1lLW9uZS10aGV0YS00OS52ZXJjZWwuYXBwIn0",
+    "signature": "tLDYrAiE7bBchgvl0T9wJ7YQpwRj0Ln1wDCL8yDu1nMa3A8Za83aWd/yDp7ePKVOqBABlTJL6FYdkoD6MjmKPBw="
   }
 }
