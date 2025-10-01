@@ -1,18 +1,18 @@
 {
-  "accountAssociation": {
-    "header": "eyJmaWQiOjE1NDc4LCJ0eXBlIjoiY3VzdG9keSIsImtleSI6IjB4ODgxRmFGNzEzOTY4QUM5RTU2NWRmODQ2Mjc5ZkM3RTdmNzcwYzFGMCJ9",
-    "payload": "eyJkb21haW4iOiJzbmFrZS1nYW1lLXNpeC1jaGkudmVyY2VsLmFwcCJ9",
-    "signature": "MHgyMmNiYjU2YTcxZTQ4ZTUwMGU0N2RjOWQ0NmJkMTVmOTU2M2NkODIwMDFlYzVhZWFiYWI2N2ZhOWI4NDMxNWUwMGM4MjEyMzA0N2RmNTMxNWUxOGQwZjk0ZjNmMzkzMjAzYmM3ZDY1MzQzYmE5OTVmY2JiMWNhM2M2ODE5NjAxMTFi"
-  },
-  "miniapp": {
+  "frame": {
+    "name": "snake-game",
     "version": "1",
-    "name": "Snake Game",
-    "homeUrl": "https://snake-game-one-theta-49.vercel.app/",
     "iconUrl": "https://khalil7044.github.io/snake-game/icon.png",
-    "splashImageUrl": "https://khalil7044.github.io/snake-game/icon.png",
+    "homeUrl": "https://snake-game-lime-ten.vercel.app/",
     "splashBackgroundColor": "#667eea",
-    "subtitle": "Play the classic snake game",
-    "description": "Classic Snake Game - Eat, grow, and don't hit yourself! Challenge your friends and beat the high score.",
-    "primaryCategory": "games"
+    "splashImageUrl": "https://khalil7044.github.io/snake-game/icon.png",
+    "primaryCategory": "games",
+    "description": "A classic implementation of the Snake game, built for the Farcaster ecosystem. Challenge your friends and track high scores",
+    "subtitle": "Classic Snake Game on Farcaster"
+  },
+  "accountAssociation": {
+    "header": "eyJmaWQiOjE1NDc4LCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4OTI5RjM3YzBDYjZCN0VmYjYyMTdmYzQ2MTk0NGE0OWZjY0NlOEU2OSJ9",
+    "payload": "eyJkb21haW4iOiIifQ",
+    "signature": "Joebryb3m2dKpd7HbGYUJdPk+agTOtEB39UFrtrsD04xrQbg7sCKcZTTtlSnA323550tg/iWzkVECnvonpPF4Bw="
   }
 }
