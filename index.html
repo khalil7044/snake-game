@@ -33,6 +33,7 @@
             color: white;
             touch-action: none;
             overflow: hidden;
+            padding: 10px;
         }
         
         .stars {
@@ -59,6 +60,7 @@
         }
         
         .container {
+            position: relative;
             text-align: center;
             background: rgba(0, 0, 0, 0.5);
             padding: 25px;
@@ -244,15 +246,15 @@
         }
         
         .sound-toggle {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
             background: rgba(0, 255, 135, 0.2);
             border: 2px solid rgba(0, 255, 135, 0.5);
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 24px;
+            font-size: 20px;
             z-index: 10;
             transition: all 0.3s;
         }
@@ -275,9 +277,9 @@
 <body>
     <div class="stars" id="stars"></div>
     
-    <div class="sound-toggle" onclick="toggleSound()" id="soundToggle">🔊</div>
-    
     <div class="container">
+        <div class="sound-toggle" onclick="toggleSound()" id="soundToggle">🔊</div>
+        
         <h1>🐍 SNAKE GAME</h1>
         
         <div class="score-board">
@@ -332,7 +334,39 @@
         
         // Sound effects
         let soundEnabled = true;
+        let backgroundMusic;
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function createBackgroundMusic() {
+            if (!soundEnabled || backgroundMusic) return;
+            
+            const notes = [262, 294, 330, 349, 392, 440, 494, 523]; // C major scale
+            const pattern = [0, 2, 4, 2, 5, 4, 2, 0];
+            let noteIndex = 0;
+            
+            function playNextNote() {
+                if (!soundEnabled || !gameRunning || gamePaused) {
+                    if (backgroundMusic) {
+                        clearInterval(backgroundMusic);
+                        backgroundMusic = null;
+                    }
+                    return;
+                }
+                
+                const frequency = notes[pattern[noteIndex % pattern.length]];
+                playSound(frequency, 0.15, 'sine');
+                noteIndex++;
+            }
+            
+            backgroundMusic = setInterval(playNextNote, 400);
+        }
+        
+        function stopBackgroundMusic() {
+            if (backgroundMusic) {
+                clearInterval(backgroundMusic);
+                backgroundMusic = null;
+            }
+        }
         
         function playSound(frequency, duration, type = 'sine') {
             if (!soundEnabled) return;
@@ -372,6 +406,12 @@
         window.toggleSound = function() {
             soundEnabled = !soundEnabled;
             document.getElementById('soundToggle').textContent = soundEnabled ? '🔊' : '🔇';
+            
+            if (!soundEnabled) {
+                stopBackgroundMusic();
+            } else if (gameRunning && !gamePaused) {
+                createBackgroundMusic();
+            }
         }
         
         // Game
@@ -417,6 +457,7 @@
         }
         
         window.startGame = function() {
+            stopBackgroundMusic();
             snake = [{x: 10, y: 10}];
             dx = 1;
             dy = 0;
@@ -432,6 +473,8 @@
             gameOverEl.classList.remove('show');
             placeFood();
             
+            createBackgroundMusic();
+            
             if (gameLoop) clearInterval(gameLoop);
             gameLoop = setInterval(update, gameSpeed);
         }
@@ -440,6 +483,12 @@
             if (!gameRunning) return;
             gamePaused = !gamePaused;
             pauseBtn.textContent = gamePaused ? 'RESUME' : 'PAUSE';
+            
+            if (gamePaused) {
+                stopBackgroundMusic();
+            } else {
+                createBackgroundMusic();
+            }
         }
         
         window.changeDirection = function(newDx, newDy) {
@@ -651,42 +700,32 @@
         
         function endGame() {
             gameRunning = false;
+            stopBackgroundMusic();
             clearInterval(gameLoop);
             finalScoreEl.textContent = score;
             gameOverEl.classList.add('show');
             playGameOverSound();
         }
         
-        window.shareScore = function() {
-            const text = `🐍 I just scored ${score} in Snake Game! Can you beat it?\n\nPlay now on Farcaster 👇\nhttps://snake-game-lime-ten.vercel.app/`;
+        window.shareScore = async function() {
+            const text = `🐍 I just scored ${score} in Snake Game! Can you beat it?`;
+            const url = 'https://snake-game-lime-ten.vercel.app/';
             
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Snake Game Score',
-                    text: text,
-                    url: 'https://snake-game-lime-ten.vercel.app/'
-                }).catch(() => {
-                    copyToClipboard(text);
-                });
-            } else {
-                copyToClipboard(text);
+            // Try using Farcaster SDK first
+            try {
+                if (typeof window.frame !== 'undefined' && window.frame.sdk) {
+                    const sdkModule = await import('https://esm.sh/@farcaster/miniapp-sdk');
+                    const { sdk } = sdkModule;
+                    
+                    await sdk.actions.openUrl(`https://warpcast.com/~/compose?text=${encodeURIComponent(text)}&embeds[]=${encodeURIComponent(url)}`);
+                    return;
+                }
+            } catch (e) {
+                console.log('SDK not available, using fallback');
             }
-        }
-        
-        function copyToClipboard(text) {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('Score copied! Share it on Farcaster 🚀');
-                });
-            } else {
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                alert('Score copied! Share it on Farcaster 🚀');
-            }
+            
+            // Fallback: Open Warpcast composer
+            window.open(`https://warpcast.com/~/compose?text=${encodeURIComponent(text)}&embeds[]=${encodeURIComponent(url)}`, '_blank');
         }
         
         document.addEventListener('keydown', (e) => {
